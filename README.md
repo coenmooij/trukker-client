@@ -1,6 +1,6 @@
-# eagle-client
+# Eagle client
 
-> A Vue.js project
+> Eagle business client
 
 ## Build Setup
 
