@@ -47,14 +47,7 @@ export default new Router({
                             path: 'create',
                             name: 'ServiceProfileForm',
                             component: ServiceProfileForm,
-
                         },
-                        {
-                            path: ':id',
-                            name: 'ServiceProfile',
-                            component: SelectedServiceProfile,
-                            redirect: {name: 'JobsOverview'}
-                        }
                     ],
                 },
             ]
