@@ -1,0 +1,96 @@
+<template>
+    <div class="col-xs-12">
+        <h1>Service Profiles</h1>
+        <hr>
+        <div class="pull-right">
+            <router-link :to="{name: 'ServiceProfileForm'}" tag="button" class="btn btn-success"><span
+                    class="glyphicon glyphicon-plus "></span> Add Service Profile
+            </router-link>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+        <table class="table table-striped" v-if="hasServiceProfiles">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Compensation</th>
+                <th>Clothing</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <app-service-profile
+                    v-for="serviceProfile in serviceProfiles"
+                    :serviceProfile="serviceProfile"
+                    :key="serviceProfile.id">
+            </app-service-profile>
+            </tbody>
+        </table>
+        <div class="">
+            <div v-if="!hasServiceProfiles" class="app-info-box alert alert-info text-center">
+                <p>You currently don't have any service profiles in your account</p>
+                <br>
+                <router-link :to="{name: 'ServiceProfileForm'}" tag="button" class="btn btn-primary"><span
+                        class="glyphicon glyphicon-plus "></span> Add Service Profile
+                </router-link>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import ServiceProfile from "./ServiceProfile.vue";
+
+    export default {
+        data(){
+            return {
+                serviceProfiles: [
+                    {
+                        id: 1,
+                        title: 'Truck Driver',
+                        description: 'I want a good truck driver',
+                        compensation: '$100/hour',
+                        clothing: 'Extra warm',
+                        location: 'Amsterdam',
+                    }, {
+                        id: 2,
+                        title: 'Taxi Driver',
+                        description: 'I want a good taxi driver',
+                        compensation: '$59/hour',
+                        clothing: 'suit',
+                        location: 'Utrecht',
+                    }, {
+                        id: 3,
+                        title: 'Racetrack Coureur',
+                        description: 'I want to have Max Verstappen type driver',
+                        compensation: '$3000/hour',
+                        clothing: 'Secure suit',
+                        location: 'Zandvoort',
+                    }, {
+                        id: 4,
+                        title: 'Soccer Mom',
+                        description: 'A mom with 4 kids in a minivan',
+                        compensation: '$15/hour',
+                        clothing: 'Mom clothing',
+                        location: 'Gouda',
+                    },
+                ],
+            };
+        },
+        components: {
+            appServiceProfile: ServiceProfile,
+        },
+        computed: {
+            hasServiceProfiles(){
+                return this.serviceProfiles.length > 0;
+            }
+        },
+    }
+</script>
+
+<style scoped>
+    .app-info-box {
+        padding: 20px;
+    }
+</style>
