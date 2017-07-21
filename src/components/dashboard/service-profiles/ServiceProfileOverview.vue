@@ -1,9 +1,8 @@
 <template>
     <div class="col-xs-12">
-        <h1>Service Profiles</h1>
-        <hr>
-        <div class="pull-right">
-            <router-link :to="{name: 'ServiceProfileForm'}" tag="button" class="btn btn-success"><span
+        <h1 class="col-xs-12 col-sm-8 col-md-6 col-lg-6">Service Profiles</h1>
+        <div class="pull-right navigation col-xs-12 col-sm-4 col-md-6 col-lg-6">
+            <router-link :to="{name: 'ServiceProfileForm'}" tag="button" class="btn btn-success pull-right"><span
                     class="glyphicon glyphicon-plus "></span> Add Service Profile
             </router-link>
         </div>
@@ -92,5 +91,9 @@
 <style scoped>
     .app-info-box {
         padding: 20px;
+    }
+
+    .navigation {
+        padding:30px 0 0 0;
     }
 </style>
