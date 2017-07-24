@@ -3,11 +3,11 @@
     <router-link class="cursor panel panel-default" tag="div"
                  :to="{name: 'JobProfileDetails', params:{jobProfileId: jobProfile.id}}">
         <div class="panel-body">
-            <div class="pull-left">
+            <div class="col-xs-12 col-sm-8">
                 <h4>{{ jobProfile.title }}</h4>
                 <p>{{ jobProfile.description}}</p>
             </div>
-            <div class="pull-right">
+            <div class="col-xs-12 col-sm-4 pull-right app-meta">
                 <p>Compensation: {{ jobProfile.compensation }}</p>
                 <p>Location: {{ jobProfile.location }}</p>
             </div>
@@ -30,5 +30,8 @@
 </script>
 
 <style scoped>
+    .app-meta {
+        padding-top: 10px;
+    }
 
 </style>
