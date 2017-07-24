@@ -1,31 +1,18 @@
 <template>
-    <div class="col-xs-12">
-        <h1 class="col-xs-12 col-sm-8 col-md-6 col-lg-6">Job Profiles</h1>
-        <div class="pull-right navigation col-xs-12 col-sm-4 col-md-6 col-lg-6">
+    <div>
+        <h1 class="col-xs-12 col-sm-4 col-md-4 col-lg-4">Job Profiles</h1>
+        <div class="pull-right col-xs-12 col-sm-4 col-md-6 col-lg-6 app-top-buttons">
             <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-success pull-right"><span
                     class="glyphicon glyphicon-plus "></span> Add Job Profile
             </router-link>
         </div>
         <div class="clearfix"></div>
-        <hr>
-        <table class="table table-striped" v-if="hasJobProfiles">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Compensation</th>
-                <th>Clothing</th>
-                <th>Location</th>
-            </tr>
-            </thead>
-            <tbody>
-            <app-job-profile
-                    v-for="jobProfile in jobProfiles"
-                    :jobProfile="jobProfile"
-                    :key="jobProfile.id">
-            </app-job-profile>
-            </tbody>
-        </table>
+        <br>
+        <app-job-profile
+                v-for="jobProfile in jobProfiles"
+                :jobProfile="jobProfile"
+                :key="jobProfile.id">
+        </app-job-profile>
         <div class="">
             <div v-if="!hasJobProfiles" class="app-info-box alert alert-info text-center">
                 <p>You currently don't have any job profiles in your account</p>
@@ -91,9 +78,5 @@
 <style scoped>
     .app-info-box {
         padding: 20px;
-    }
-
-    .navigation {
-        padding:30px 0 0 0;
     }
 </style>

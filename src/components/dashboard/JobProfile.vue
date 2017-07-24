@@ -1,10 +1,17 @@
 <template>
-    <router-link class="cursor" tag="tr" :to="{name: 'JobProfileDetails', params:{jobProfileId: jobProfile.id}}">
-        <td>{{ jobProfile.title }}</td>
-        <td>{{ jobProfile.description }}</td>
-        <td>{{ jobProfile.compensation }}</td>
-        <td>{{ jobProfile.clothing }}</td>
-        <td>{{ jobProfile.location }}</td>
+
+    <router-link class="cursor panel panel-default" tag="div"
+                 :to="{name: 'JobProfileDetails', params:{jobProfileId: jobProfile.id}}">
+        <div class="panel-body">
+            <div class="pull-left">
+                <h4>{{ jobProfile.title }}</h4>
+                <p>{{ jobProfile.description}}</p>
+            </div>
+            <div class="pull-right">
+                <p>Compensation: {{ jobProfile.compensation }}</p>
+                <p>Location: {{ jobProfile.location }}</p>
+            </div>
+        </div>
     </router-link>
 </template>
 
@@ -16,7 +23,6 @@
                 title: String,
                 description: String,
                 compensation: String,
-                clothing: String,
                 location: String,
             },
         },
@@ -24,11 +30,5 @@
 </script>
 
 <style scoped>
-    .cursor {
-        cursor: pointer;
-    }
 
-    .cursor:hover {
-        background-color: #d7e7ff;
-    }
 </style>

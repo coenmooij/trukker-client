@@ -1,10 +1,12 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <app-header></app-header>
-        </div>
-        <div class="row">
-            <router-view></router-view>
+    <div>
+        <app-header></app-header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                    <router-view></router-view>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -17,9 +19,3 @@
         },
     }
 </script>
-
-<style>
-    body {
-        padding: 20px;
-    }
-</style>

@@ -1,15 +1,15 @@
 <template>
-    <div class="col-xs-12" v-if="!hasChildren">
+    <div v-if="!hasChildren">
         <h1 class="col-xs-12">Job Profile</h1>
         <div class="clearfix"></div>
-        <hr>
-        <div class="col-xs-6">
-            <div class="list-group" v-for="(parameter, key) in jobProfile"><strong>{{key | capitalize }}:</strong>
-                {{ parameter }}
+        <div class="divider"></div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p v-for="(parameter, key) in jobProfile">
+                    <strong>{{key | capitalize }}:</strong> {{ parameter }}
+                </p>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <hr>
         <component is="appShiftsView"></component>
     </div>
     <router-view v-else></router-view>
@@ -31,9 +31,6 @@
             }
         },
         computed: {
-            id(){
-                return this.$route.params.id;
-            },
             hasChildren(){
                 return this.$route.name !== 'JobProfileDetails';
             }
@@ -43,3 +40,7 @@
         },
     }
 </script>
+
+<style>
+
+</style>

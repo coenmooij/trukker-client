@@ -1,9 +1,21 @@
 <template>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <router-link tag="a" class="navbar-left" :to="{name:'JobProfiles'}">
-                <img alt="Eagle" src="../assets/logo-white.png" height="42px" style="padding:6px 0 0 0;">
-            </router-link>
+    <nav class="navbar navbar-default">
+        <div class="container">
+                <router-link tag="a" class="navbar-left" :to="{name:'JobProfiles'}">
+                    <img alt="Eagle" src="../assets/logo-blue.png">
+                </router-link>
         </div>
     </nav>
 </template>
+
+<style scoped>
+    nav {
+        background-color: #fff;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    a img {
+        margin: 20px 0;
+    }
+</style>

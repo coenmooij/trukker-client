@@ -1,47 +1,42 @@
 <template>
     <div>
         <h2 class="col-xs-12 col-sm-8 col-md-6 col-lg-6">Shifts</h2>
-        <div class="pull-right navigation col-xs-12 col-sm-4 col-md-6 col-lg-6">
+        <div class="pull-right col-xs-12 col-sm-4 col-md-6 col-lg-6 app-top-buttons">
             <router-link :to="{name: 'ShiftCreate', params:{jobProfileId: jobProfileId}}" tag="button"
                          class="btn btn-success pull-right"><span
                     class="glyphicon glyphicon-plus "></span> Add Shift
             </router-link>
         </div>
         <div class="clearfix"></div>
-        <hr>
-        <table class="table table-striped" v-if="hasShifts">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <app-shift
-                    v-for="shift in shifts"
-                    :shift="shift"
-                    :key="shift.id">
-            </app-shift>
-            </tbody>
-        </table>
-        <div class="">
-            <div v-if="!hasShifts" class="app-info-box alert alert-info text-center">
-                <p>You currently don't have any shifts in your account</p>
-                <br>
-                <router-link :to="{name: 'ShiftCreate', params:{jobProfileId: jobProfileId}}" tag="button"
-                             class="btn btn-primary"><span
-                        class="glyphicon glyphicon-plus "></span> Add Shift
-                </router-link>
-            </div>
+        <br>
+        <app-shift
+                v-for="shift in shifts"
+                :shift="shift"
+                :key="shift.id">
+        </app-shift>
+        <div v-if="!hasShifts" class="app-info-box alert alert-warning text-center">
+            <p>You currently don't have any shifts for this job profile</p>
         </div>
     </div>
 </template>
 
 <script>
+    import Shift from './Shift.vue';
+
     export default {
         data(){
             return {
-                shifts: [],
+                shifts: [
+                    {
+                        id: 1,
+                        title: 'Shift',
+                        description: 'vandaag iemand nodig voor de catering',
+                        compensation: '10$/h',
+                        time: '2 dagen',
+                        date: '3 juli t/m 15 juli',
+                        location: 'Amsterdam centrum',
+                    },
+                ],
             }
         },
         computed: {
@@ -51,12 +46,9 @@
             jobProfileId(){
                 return this.$route.params.jobProfileId;
             }
-        }
+        },
+        components: {
+            appShift: Shift,
+        },
     }
 </script>
-
-<style scoped>
-    .navigation {
-        padding: 30px 0 0 0;
-    }
-</style>
