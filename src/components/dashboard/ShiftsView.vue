@@ -3,7 +3,7 @@
         <h2 class="col-xs-12 col-sm-8 col-md-6 col-lg-6">Shifts</h2>
         <div class="pull-right col-xs-12 col-sm-4 col-md-6 col-lg-6 app-top-buttons">
             <router-link :to="{name: 'ShiftCreate', params:{jobProfileId: jobProfileId}}" tag="button"
-                         class="btn btn-success pull-right"><span
+                         class="btn btn-primary pull-right"><span
                     class="glyphicon glyphicon-plus "></span> Add Shift
             </router-link>
         </div>
@@ -16,6 +16,11 @@
         </app-shift>
         <div v-if="!hasShifts" class="app-info-box alert alert-warning text-center">
             <p>You currently don't have any shifts for this job profile</p>
+        </div>
+        <div v-if="hasShifts" class="text-center app-bordered">
+            <router-link :to="{name: 'ShiftCreate'}" tag="button" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-plus "></span> Add Shift
+            </router-link>
         </div>
     </div>
 </template>
@@ -56,5 +61,13 @@
 <style>
     .app-info-box {
         padding: 20px;
+    }
+
+    .app-bordered {
+        padding: 30px;
+        border: 3px dotted #c7c7c7;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
     }
 </style>

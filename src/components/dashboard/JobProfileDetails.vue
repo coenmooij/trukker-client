@@ -14,11 +14,11 @@
             </div>
         </div>
         <component is="appShiftsView"></component>
+        <br>
         <div class="text-center">
             <router-link :to="{name: 'JobProfiles'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
                 Back to Job Profiles
             </router-link>
-        </div>
         </div>
     </div>
     <router-view v-else></router-view>

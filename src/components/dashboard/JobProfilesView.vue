@@ -16,7 +16,7 @@
         <div v-if="!hasJobProfiles" class="app-info-box alert alert-warning text-center">
             <p>You currently don't have any job profiles in your account</p>
         </div>
-        <div v-else class="text-center app-bordered">
+        <div v-if="hasJobProfiles" class="text-center app-bordered">
             <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-primary"><span
                     class="glyphicon glyphicon-plus "></span> Add Job Profile
             </router-link>
@@ -78,9 +78,10 @@
     .app-info-box {
         padding: 20px;
     }
+
     .app-bordered {
-        padding:30px;
-        border:3px dotted #c7c7c7;
+        padding: 30px;
+        border: 3px dotted #c7c7c7;
         -webkit-border-radius: 15px;
         -moz-border-radius: 15px;
         border-radius: 15px;
