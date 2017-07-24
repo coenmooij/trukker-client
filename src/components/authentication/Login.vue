@@ -9,7 +9,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input class="form-control" id="password" type="text">
+                        <input class="form-control" id="password" type="password">
                     </div>
                     <div class="divider"></div>
                     <button type="submit" class="btn btn-primary pull-right" @click.prevent="login">
