@@ -1,3 +1,3 @@
 <template>
-    <h1>Job</h1>
+    <h1>Shift</h1>
 </template>

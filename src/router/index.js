@@ -6,15 +6,12 @@ import Register from "../components/authentication/Register.vue";
 
 import Platform from "../components/Platform.vue";
 
-import ServiceProfiles from "../components/dashboard/service-profiles/ServiceProfiles.vue";
-import ServiceProfileOverview from "../components/dashboard/service-profiles/ServiceProfileOverview.vue";
-import ServiceProfileForm from "../components/dashboard/service-profiles/ServiceProfileForm.vue";
-import ServiceProfileView from '../components/dashboard/service-profiles/ServiceProfileView.vue';
-import ServiceProfileEdit from '../components/dashboard/service-profiles/ServiceProfileEdit.vue';
+import JobProfiles from "../components/dashboard/JobProfiles.vue";
+import JobProfileCreate from "../components/dashboard/JobProfileCreate.vue";
+import JobProfileDetails from '../components/dashboard/JobProfileDetails.vue';
 
-import Jobs from '../components/dashboard/jobs/Jobs.vue';
-import JobsOverview from '../components/dashboard/jobs/JobsOverview.vue';
-import JobForm from '../components/dashboard/jobs/JobForm.vue';
+import ShiftCreate from '../components/dashboard/ShiftCreate.vue';
+import ShiftDetails from '../components/dashboard/ShiftDetails.vue';
 
 Vue.use(Router);
 
@@ -36,51 +33,37 @@ export default new Router({
             path: '',
             name: 'private',
             component: Platform,
-            redirect: {name: 'ServiceProfiles'},
+            redirect: {name: 'JobProfiles'},
             meta: {isPrivate: true},
             children: [
                 {
-                    path: '/service-profiles',
-                    name: 'ServiceProfiles',
-                    component: ServiceProfiles,
-                    redirect: {name: 'ServiceProfileOverview'},
+                    path: '/job-profiles',
+                    name: 'JobProfiles',
+                    component: JobProfiles,
                     children: [
                         {
-                            path: 'overview',
-                            name: 'ServiceProfileOverview',
-                            component: ServiceProfileOverview,
-                        }, {
                             path: 'create',
-                            name: 'ServiceProfileForm',
-                            component: ServiceProfileForm,
+                            name: 'JobProfileCreate',
+                            component: JobProfileCreate,
                         }, {
-                            path: ':id/view',
-                            name: 'ServiceProfileView',
-                            component: ServiceProfileView,
-                        }, {
-                            path: ':id/edit',
-                            name: 'ServiceProfileEdit',
-                            component: ServiceProfileEdit,
-                        }, {
-                            path: ':id/jobs',
-                            name: 'Jobs',
-                            component: Jobs,
-                            redirect: {name: 'JobsOverview'},
+                            path: ':job_profile_id/details',
+                            name: 'JobProfileDetails',
+                            component: JobProfileDetails,
                             children: [
                                 {
-                                    path: 'view',
-                                    name: 'JobsOverview',
-                                    component: JobsOverview,
-                                }, {
                                     path: 'create',
-                                    name: 'JobForm',
-                                    component: JobForm,
-                                },
-                            ],
+                                    name: 'ShiftCreate',
+                                    component: ShiftCreate,
+                                }, {
+                                    path: ':shift_id/details',
+                                    name: 'ShiftDetails',
+                                    component: ShiftDetails,
+                                }
+                            ]
                         },
                     ],
                 },
-            ]
+            ],
         },
     ]
 });

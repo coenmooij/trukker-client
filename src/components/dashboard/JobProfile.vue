@@ -1,17 +1,17 @@
 <template>
-    <router-link class="cursor" tag="tr" :to="{name: 'ServiceProfileView', params:{id: serviceProfile.id} }">
-        <td>{{ serviceProfile.title }}</td>
-        <td>{{ serviceProfile.description }}</td>
-        <td>{{ serviceProfile.compensation }}</td>
-        <td>{{ serviceProfile.clothing }}</td>
-        <td>{{ serviceProfile.location }}</td>
+    <router-link class="cursor" tag="tr" :to="{name: 'JobProfileDetails', params:{jobProfileId: jobProfile.id}}">
+        <td>{{ jobProfile.title }}</td>
+        <td>{{ jobProfile.description }}</td>
+        <td>{{ jobProfile.compensation }}</td>
+        <td>{{ jobProfile.clothing }}</td>
+        <td>{{ jobProfile.location }}</td>
     </router-link>
 </template>
 
 <script>
     export default {
         props: {
-            serviceProfile: {
+            jobProfile: {
                 id: Number,
                 title: String,
                 description: String,
@@ -32,4 +32,3 @@
         background-color: #d7e7ff;
     }
 </style>
-

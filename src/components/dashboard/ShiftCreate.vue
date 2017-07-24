@@ -1,6 +1,6 @@
 <template>
     <div class="col-xs-12">
-        <h1 class="text-center">Create a Job</h1>
+        <h1 class="text-center">Create a Shift</h1>
         <hr>
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
             <form>
@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" v-model="description"
-                              placeholder="Describe your Job"></textarea>
+                              placeholder="Describe your Shift"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="compensation">Compensation</label>
@@ -31,10 +31,9 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" @click.prevent="submitForm" class="btn btn-primary"><span
-                            class="glyphicon glyphicon-plus"></span> Create Service Profile
+                            class="glyphicon glyphicon-plus"></span> Create Shift
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
@@ -52,9 +51,15 @@
                 location: '',
             }
         },
+        computed: {
+            jobProfileId(){
+                return this.$route.params.jobProfileId;
+            }
+        },
         methods: {
             submitForm(){
                 console.log('form submitted');
+                this.$router.push({name: 'JobProfileDetails', parameters: {jobProfileId: this.jobProfileId}});
             }
         }
     }
@@ -66,7 +71,7 @@
     }
 
     button {
-        margin-top:10px;
+        margin-top: 10px;
         width: 100%;
     }
 </style>

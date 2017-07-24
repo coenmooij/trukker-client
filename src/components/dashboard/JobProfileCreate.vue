@@ -1,6 +1,6 @@
 <template>
     <div class="col-xs-12">
-        <h1 class="text-center">Create a Service Profile</h1>
+        <h1 class="text-center">Create a Job Profile</h1>
         <hr>
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
             <form>
@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" v-model="description"
-                              placeholder="Describe your Service Profile"></textarea>
+                              placeholder="Describe your Job Profile"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="compensation">Compensation</label>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" @click.prevent="submitForm" class="btn btn-primary"><span
-                            class="glyphicon glyphicon-plus"></span> Create Service Profile
+                            class="glyphicon glyphicon-plus"></span> Create Job Profile
                     </button>
                 </div>
 
@@ -50,6 +50,7 @@
         methods: {
             submitForm(){
                 console.log('form submitted');
+                this.$router.push({name: 'JobProfilesView'});
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <h1>Service Profile Edit for id {{ id }}</h1>
+    <h1>Job Profile Edit for id {{ id }}</h1>
 </template>
 
 <script>

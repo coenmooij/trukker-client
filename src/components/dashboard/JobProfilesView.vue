@@ -1,14 +1,14 @@
 <template>
     <div class="col-xs-12">
-        <h1 class="col-xs-12 col-sm-8 col-md-6 col-lg-6">Service Profiles</h1>
+        <h1 class="col-xs-12 col-sm-8 col-md-6 col-lg-6">Job Profiles</h1>
         <div class="pull-right navigation col-xs-12 col-sm-4 col-md-6 col-lg-6">
-            <router-link :to="{name: 'ServiceProfileForm'}" tag="button" class="btn btn-success pull-right"><span
-                    class="glyphicon glyphicon-plus "></span> Add Service Profile
+            <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-success pull-right"><span
+                    class="glyphicon glyphicon-plus "></span> Add Job Profile
             </router-link>
         </div>
         <div class="clearfix"></div>
         <hr>
-        <table class="table table-striped" v-if="hasServiceProfiles">
+        <table class="table table-striped" v-if="hasJobProfiles">
             <thead>
             <tr>
                 <th>Title</th>
@@ -19,19 +19,19 @@
             </tr>
             </thead>
             <tbody>
-            <app-service-profile
-                    v-for="serviceProfile in serviceProfiles"
-                    :serviceProfile="serviceProfile"
-                    :key="serviceProfile.id">
-            </app-service-profile>
+            <app-job-profile
+                    v-for="jobProfile in jobProfiles"
+                    :jobProfile="jobProfile"
+                    :key="jobProfile.id">
+            </app-job-profile>
             </tbody>
         </table>
         <div class="">
-            <div v-if="!hasServiceProfiles" class="app-info-box alert alert-info text-center">
-                <p>You currently don't have any service profiles in your account</p>
+            <div v-if="!hasJobProfiles" class="app-info-box alert alert-info text-center">
+                <p>You currently don't have any job profiles in your account</p>
                 <br>
-                <router-link :to="{name: 'ServiceProfileForm'}" tag="button" class="btn btn-primary"><span
-                        class="glyphicon glyphicon-plus "></span> Add Service Profile
+                <router-link :to="{name: 'JobProfileCreate`'}" tag="button" class="btn btn-primary"><span
+                        class="glyphicon glyphicon-plus "></span> Add Job Profile
                 </router-link>
             </div>
         </div>
@@ -39,12 +39,12 @@
 </template>
 
 <script>
-    import ServiceProfile from "./ServiceProfile.vue";
+    import JobProfile from "./JobProfile.vue";
 
     export default {
         data(){
             return {
-                serviceProfiles: [
+                jobProfiles: [
                     {
                         id: 1,
                         title: 'Truck Driver',
@@ -78,11 +78,11 @@
             };
         },
         components: {
-            appServiceProfile: ServiceProfile,
+            appJobProfile: JobProfile,
         },
         computed: {
-            hasServiceProfiles(){
-                return this.serviceProfiles.length > 0;
+            hasJobProfiles(){
+                return this.jobProfiles.length > 0;
             }
         },
     }
