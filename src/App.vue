@@ -31,4 +31,24 @@
     .divider {
         height: 0.5em;
     }
+
+    .form-control {
+        background-color:#f2f2f3;
+    }
+
+    .form-control:focus {
+        background-color: white !important;
+        border-color:#aaa;
+        box-shadow:0 0;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .flip-180 {
+        -ms-transform: rotate(180deg); /* IE 9 */
+        -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+        transform: rotate(180deg);
+    }
 </style>
