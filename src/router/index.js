@@ -46,7 +46,7 @@ export default new Router({
                             name: 'JobProfileCreate',
                             component: JobProfileCreate,
                         }, {
-                            path: ':job_profile_id/details',
+                            path: ':jobProfileId/details',
                             name: 'JobProfileDetails',
                             component: JobProfileDetails,
                             children: [
@@ -55,7 +55,7 @@ export default new Router({
                                     name: 'ShiftCreate',
                                     component: ShiftCreate,
                                 }, {
-                                    path: ':shift_id/details',
+                                    path: ':shiftId/details',
                                     name: 'ShiftDetails',
                                     component: ShiftDetails,
                                 }

@@ -49,7 +49,7 @@
                 return this.shifts.length > 0;
             },
             jobProfileId(){
-                return this.$route.params.id;
+                return this.$route.params.jobProfileId;
             }
         }
     }

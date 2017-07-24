@@ -50,7 +50,7 @@
         methods: {
             submitForm(){
                 console.log('form submitted');
-                this.$router.push({name: 'JobProfilesView'});
+                this.$router.push({name: 'JobProfiles'});
             }
         }
     }
