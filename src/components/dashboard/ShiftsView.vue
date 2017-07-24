@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2 class="col-xs-12 col-sm-8 col-md-6 col-lg-6">Shifts</h2>
-        <div class="pull-right col-xs-12 col-sm-4 col-md-6 col-lg-6 app-top-buttons">
+        <h2 class="pull-left">Shifts</h2>
+        <div class="pull-right app-top-buttons">
             <router-link :to="{name: 'ShiftCreate', params:{jobProfileId: jobProfileId}}" tag="button"
                          class="btn btn-primary pull-right"><span
                     class="glyphicon glyphicon-plus "></span> Add Shift

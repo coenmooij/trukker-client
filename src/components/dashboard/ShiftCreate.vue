@@ -3,7 +3,8 @@
         <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
             Back to Job Profile details
         </router-link>
-        <h1 class="col-xs-12">Create a Shift</h1>
+        <div class="clearfix"></div>
+        <h1 class="pull-left">Create a Shift</h1>
         <div class="clearfix"></div>
         <div class="divider"></div>
         <div class="panel panel-default">
@@ -43,9 +44,11 @@
                 </form>
             </div>
         </div>
-        <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-            Back to Job Profile details
-        </router-link>
+        <div class="text-center">
+            <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
+                Back to Job Profile details
+            </router-link>
+        </div>
     </div>
 </template>
 

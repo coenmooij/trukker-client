@@ -3,7 +3,8 @@
         <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
             Back to Job Profile details
         </router-link>
-        <h1 class="col-xs-12">Shift</h1>
+        <div class="clearfix"></div>
+        <h1 class="pull-left">Shift</h1>
         <div class="clearfix"></div>
         <div class="divider"></div>
         <div class="panel panel-default">

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="col-xs-12 col-sm-4 col-md-4 col-lg-4">Job Profiles</h1>
-        <div class="pull-right col-xs-12 col-sm-4 col-md-6 col-lg-6 app-top-buttons">
+        <h1 class="pull-left">Job Profiles</h1>
+        <div class="pull-right app-top-buttons">
             <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-primary pull-right"><span
                     class="glyphicon glyphicon-plus "></span> Add Job Profile
             </router-link>
