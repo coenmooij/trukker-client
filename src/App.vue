@@ -33,13 +33,13 @@
     }
 
     .form-control {
-        background-color:#f2f2f3;
+        background-color: #f2f2f3;
     }
 
     .form-control:focus {
         background-color: white !important;
-        border-color:#aaa;
-        box-shadow:0 0;
+        border-color: #aaa;
+        box-shadow: 0 0;
     }
 
     a:hover {
@@ -51,4 +51,18 @@
         -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
         transform: rotate(180deg);
     }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 2s;
+    }
+
+    .fade-leave-active {
+        opacity: 0;
+    }
+
+
 </style>
