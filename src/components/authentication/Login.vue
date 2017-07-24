@@ -31,13 +31,13 @@
                 </div>
                 <div class="text-center">
                     <p>Forgot your password?
-                        <router-link to="PasswordReset">
+                        <router-link :to="{name:'PasswordReset'}">
                             Reset my password
                         </router-link>
                     </p>
                     <div class="divider"></div>
                     <p>Don't have an account yet?
-                        <router-link to="Register">
+                        <router-link :to="{name: 'Register'}">
                             Register here
                         </router-link>
                     </p>
