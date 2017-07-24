@@ -2,7 +2,7 @@
     <div>
         <h1 class="col-xs-12 col-sm-4 col-md-4 col-lg-4">Job Profiles</h1>
         <div class="pull-right col-xs-12 col-sm-4 col-md-6 col-lg-6 app-top-buttons">
-            <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-success pull-right"><span
+            <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-primary pull-right"><span
                     class="glyphicon glyphicon-plus "></span> Add Job Profile
             </router-link>
         </div>
@@ -13,14 +13,13 @@
                 :jobProfile="jobProfile"
                 :key="jobProfile.id">
         </app-job-profile>
-        <div class="">
-            <div v-if="!hasJobProfiles" class="app-info-box alert alert-info text-center">
-                <p>You currently don't have any job profiles in your account</p>
-                <br>
-                <router-link :to="{name: 'JobProfileCreate`'}" tag="button" class="btn btn-primary"><span
-                        class="glyphicon glyphicon-plus "></span> Add Job Profile
-                </router-link>
-            </div>
+        <div v-if="!hasJobProfiles" class="app-info-box alert alert-warning text-center">
+            <p>You currently don't have any job profiles in your account</p>
+        </div>
+        <div v-else class="text-center app-bordered">
+            <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-plus "></span> Add Job Profile
+            </router-link>
         </div>
     </div>
 </template>
@@ -78,5 +77,12 @@
 <style scoped>
     .app-info-box {
         padding: 20px;
+    }
+    .app-bordered {
+        padding:30px;
+        border:3px dotted #c7c7c7;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
     }
 </style>

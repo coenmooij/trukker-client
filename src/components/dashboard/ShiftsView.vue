@@ -52,3 +52,9 @@
         },
     }
 </script>
+
+<style>
+    .app-info-box {
+        padding: 20px;
+    }
+</style>
