@@ -1,17 +1,19 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import Auth from "../components/authentication/Auth.vue";
 import Login from "../components/authentication/Login.vue";
 import Register from "../components/authentication/Register.vue";
+import PasswordReset from "../components/authentication/PasswordReset.vue";
 
 import Platform from "../components/Platform.vue";
 
 import JobProfiles from "../components/dashboard/JobProfiles.vue";
 import JobProfileCreate from "../components/dashboard/JobProfileCreate.vue";
-import JobProfileDetails from '../components/dashboard/JobProfileDetails.vue';
+import JobProfileDetails from "../components/dashboard/JobProfileDetails.vue";
 
-import ShiftCreate from '../components/dashboard/ShiftCreate.vue';
-import ShiftDetails from '../components/dashboard/ShiftDetails.vue';
+import ShiftCreate from "../components/dashboard/ShiftCreate.vue";
+import ShiftDetails from "../components/dashboard/ShiftDetails.vue";
 
 Vue.use(Router);
 
@@ -19,25 +21,35 @@ export default new Router({
     mode: 'history',
     routes: [
         {
-            path: '/login',
-            name: 'Login',
-            component: Login,
+            path: '/',
+            name: 'auth',
+            component: Auth,
+            redirect: {name: 'Login'},
             meta: {isPublic: true},
+            children: [
+                {
+                    path: 'login',
+                    name: 'Login',
+                    component: Login,
+                }, {
+                    path: 'register',
+                    name: 'Register',
+                    component: Register,
+                }, {
+                    path: 'password-reset',
+                    name: 'PasswordReset',
+                    component: PasswordReset,
+                },
+            ],
         }, {
-            path: '/register',
-            name: 'Register',
-            component: Register,
-            meta: {isPublic: true},
-        },
-        {
-            path: '',
+            path: '/',
             name: 'private',
             component: Platform,
             redirect: {name: 'JobProfiles'},
             meta: {isPrivate: true},
             children: [
                 {
-                    path: '/job-profiles',
+                    path: 'job-profiles',
                     name: 'JobProfiles',
                     component: JobProfiles,
                     children: [
