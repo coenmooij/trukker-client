@@ -5,7 +5,7 @@
                 <transition name="fade" appear>
                     <div class="logo text-center">
                         <router-link tag="a" :to="{name:'JobProfiles'}">
-                            <img alt="Eagle" src="../../assets/logo-blue-150x80.png">
+                            <img alt="Eagle" src="../../assets/trukker-logo.png">
                         </router-link>
                         <div class="clearfix"></div>
                     </div>

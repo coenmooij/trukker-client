@@ -5,7 +5,7 @@
 
         <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
                 <router-link tag="a" class="navbar-left" :to="{name:'JobProfiles'}">
-                    <img alt="Eagle" src="../assets/logo-blue.png">
+                    <img alt="Eagle" src="../assets/trukker-logo.png">
                 </router-link>
         </div>
         </div>
@@ -20,6 +20,6 @@
     }
 
     a img {
-        margin: 20px -20px;
+        margin:20px -20px;
     }
 </style>
