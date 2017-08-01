@@ -1,6 +1,6 @@
-# Eagle client
+# Trukker client
 
-> Eagle business client
+> Trukker business client
 
 ## Build Setup
 
