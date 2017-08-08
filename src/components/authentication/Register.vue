@@ -4,29 +4,37 @@
             <div class="panel-body">
                 <form>
                     <div class="form-group">
-                        <label for="company">Company</label>
+                        <label for="company">Bedrijf</label>
                         <input class="form-control" id="company" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="firstName">Voornaam</label>
+                        <input class="form-control" id="firstName" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Achternaam</label>
+                        <input class="form-control" id="lastName" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Emailadres</label>
                         <input class="form-control" id="email" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Wachtwoord</label>
                         <input class="form-control" id="password" type="password">
                     </div>
                     <div class="divider"></div>
                     <button type="submit" class="btn btn-primary pull-right" @click.prevent="register">
-                        <span class="glyphicon glyphicon-check"></span> Register
+                        <span class="glyphicon glyphicon-check"></span> Registreren
                     </button>
                     <div class="clearfix"></div>
                 </form>
             </div>
         </div>
         <div class="text-center">
-            <p>Already have an account?
+            <p>Heb je al een account?
                 <router-link :to="{name: 'Login'}">
-                    Login here
+                    Inloggen
                 </router-link>
             </p>
         </div>

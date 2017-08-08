@@ -2,6 +2,14 @@
     <router-view></router-view>
 </template>
 
+<script>
+    export default {
+        created(){
+            this.$store.dispatch('loadToken');
+        },
+    }
+</script>
+
 <style>
     body {
         font-family: Raleway, sans-serif;

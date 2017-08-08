@@ -3,6 +3,17 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import VueResource from "vue-resource";
+import nl from "vee-validate/dist/locale/nl";
+import VeeValidate, {Validator} from "vee-validate";
+import store from "./store";
+
+Vue.use(VueResource);
+
+Validator.addLocale(nl);
+Vue.use(VeeValidate, {locale: 'nl'});
+
+Vue.http.options.root = "http://api.trukker.dev";
 
 Vue.config.productionTip = false;
 
@@ -13,6 +24,7 @@ Vue.filter('capitalize', (value) => {
 new Vue({
     el: '#app',
     router,
+    store,
     template: '<App/>',
     components: {App}
 });

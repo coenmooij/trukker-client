@@ -4,27 +4,27 @@
             <div class="panel-body">
                 <form>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Emailadres</label>
                         <input class="form-control" id="email" type="text">
                     </div>
                     <div class="divider"></div>
                     <button type="submit" class="btn btn-danger pull-right" @click.prevent="reset">
-                        <span class="glyphicon glyphicon-repeat"></span> Reset Password
+                        <span class="glyphicon glyphicon-repeat"></span> Reset Wachtwoord
                     </button>
                     <div class="clearfix"></div>
                 </form>
             </div>
         </div>
         <div class="text-center">
-            <p>Remembered your password?
+            <p>Wel een wachtwoord?
                 <router-link :to="{name: 'Login'}">
-                    Login here
+                    Inloggen
                 </router-link>
             </p>
             <div class="divider"></div>
-            <p>Don't have an account yet?
+            <p>Nog geen account?
                 <router-link :to="{name: 'Register'}">
-                    Register here
+                    Registreren
                 </router-link>
             </p>
         </div>
