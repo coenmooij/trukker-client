@@ -15,6 +15,21 @@ Vue.use(VeeValidate, {locale: 'nl'});
 
 Vue.http.options.root = "http://api.trukker.dev";
 
+router.beforeEach((to, from, next) => {
+    const loggedIn = store.isLoggedIn;
+    if (to.matched.some(record => record.meta.isPublic)) {
+        if (loggedIn) {
+            next({name: 'Dashboard'});
+        }
+        next();
+    } else if (to.matched.some(record => record.meta.isPrivate)) {
+        if (!loggedIn) {
+            next({name: 'Login'});
+        }
+        next();
+    }
+});
+
 Vue.config.productionTip = false;
 
 Vue.filter('capitalize', (value) => {

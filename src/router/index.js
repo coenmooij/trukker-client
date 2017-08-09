@@ -43,7 +43,7 @@ export default new Router({
             ],
         }, {
             path: '/',
-            name: 'private',
+            name: 'Dashboard',
             component: Platform,
             redirect: {name: 'JobProfiles'},
             meta: {isPrivate: true},

@@ -3,15 +3,12 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="alert alert-danger text-center" v-if="error">
-                    <p>Inloggen mislukt</p>
+                    <p>Onjuist emailadres of wachtwoord</p>
                 </div>
                 <form>
-                    <div class="form-group" :class="{'control': true}">
+                    <div class="form-group">
                         <label for="email">Emailadres</label>
-                        <input class="form-control" id="email" name="email" type="text"
-                               :class="{'input': true, 'is-danger': errors.has('email') }" v-validate="'required|email'"
-                               v-model="email">
-                        <p v-if="errors.has('email')" class="text-danger">{{ errors.first('email') }}</p>
+                        <input class="form-control" id="email" name="email" type="text" v-model="email">
                     </div>
                     <div class="form-group">
                         <label for="password">Wachtwoord</label>
@@ -67,15 +64,13 @@
                     password: this.password,
                 }).then(response => response.json())
                     .then(data => {
-                        console.log(data);
                         if (data.token) {
                             this.setToken(data.token);
                         }
-                        this.$router.push({name: 'JobProfiles'});
+                        this.$router.push({name: 'Dashboard'});
                     }).catch(function (error) {
-                    this.error = true;
+                    this.error = error;
                 });
-
             },
         },
     }
