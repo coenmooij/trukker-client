@@ -16,7 +16,8 @@ Vue.use(VeeValidate, {locale: 'nl'});
 Vue.http.options.root = "http://api.trukker.dev";
 
 router.beforeEach((to, from, next) => {
-    const loggedIn = store.isLoggedIn;
+    store.dispatch('loadToken');
+    const loggedIn = store.getters.isLoggedIn;
     if (to.matched.some(record => record.meta.isPublic)) {
         if (loggedIn) {
             next({name: 'Dashboard'});
