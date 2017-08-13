@@ -1,47 +1,68 @@
 <template>
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
         <router-link :to="{name: 'JobProfiles'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-            Back to Job Profiles
+            Terug naar Dienstprofielen
         </router-link>
         <div class="clearfix"></div>
-        <h1 class="pull-left">Create a Job Profile</h1>
+        <h1 class="pull-left">Dienstprofiel aanmaken</h1>
         <div class="clearfix"></div>
         <div class="divider"></div>
         <div class="panel panel-default">
             <div class="panel-body">
+                <div class="alert alert-danger text-center" v-if="error">
+                    <p>Aanmaken mislukt</p>
+                </div>
                 <form>
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input class="form-control" id="title" type="text" v-model="title" placeholder="Truck Driver">
+                        <label for="title">Titel*</label>
+                        <input class="form-control" id="title" type="text" name="Titel" v-model="title"
+                               v-validate="'required'"
+                               placeholder="bijv.: Ervaren vrachtwagenchauffeur">
+                        <small v-if="showErrors && errors.has('Titel')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Titel') }}
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">Beschrijving</label>
                         <textarea class="form-control" id="description" v-model="description"
-                                  placeholder="Describe your Job Profile"></textarea>
+                                  placeholder="Beschrijf hier je dienstprofiel"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="compensation">Compensation</label>
-                        <input class="form-control" id="compensation" v-model="compensation" placeholder="$10/hour"/>
+                        <label for="vehicle_type">Type Voertuig</label>
+                        <input class="form-control" id="vehicle_type" name="Type voertuig" v-model="vehicle_type"
+                               v-validate="'required'" placeholder="bijv.: Oplegger/Aanhangwagen/LZV"/>
+                        <small v-if="showErrors && errors.has('Type voertuig')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Type voertuig') }}
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="clothing">Clothing</label>
-                        <input class="form-control" id="clothing" v-model="clothing" placeholder="e.g. Formal/Warm"/>
+                        <label for="license">Rijbewijs*</label>
+                        <input class="form-control" id="license" name="Rijbewijs" v-model="license"
+                               v-validate="'required'" placeholder="bijv.: Rijbewijs B & C"/>
+                        <small v-if="showErrors && errors.has('Rijbewijs')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Rijbewijs') }}
+                        </small>
                     </div>
-                    <div class="form-group">
-                        <label for="location">Location</label>
-                        <input class="form-control" id="location" v-model="location" placeholder="Amsterdam"/>
+                    <div class="form-group checkbox">
+                        <label for="code-95">
+                            <input type="checkbox" id="code-95" v-model="code_95"/>In bezit van Code 95
+                        </label>
+
                     </div>
                     <br>
-                    <button type="submit" style="width:100%;" @click.prevent="submitForm"
+                    <button type="submit" style="width:100%;" @click.prevent="submit"
                             class="btn btn-primary text-center"><span
-                            class="glyphicon glyphicon-plus"></span> Create Job Profile
+                            class="glyphicon glyphicon-plus"></span> Dienstprofiel aanmaken
                     </button>
                 </form>
             </div>
         </div>
         <div class="text-center">
             <router-link :to="{name: 'JobProfiles'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-                Back to Job Profiles
+                Terug naar Dienstprofielen
             </router-link>
         </div>
     </div>
@@ -53,18 +74,38 @@
             return {
                 title: '',
                 description: '',
-                compensation: '',
-                clothing: '',
-                location: '',
+                license: '',
+                code_95: false,
+                vehicle_type: '',
+                showErrors: false,
+                error: false,
             }
         },
         methods: {
-            submitForm(){
-                console.log('form submitted');
-                this.$router.push({name: 'JobProfiles'});
+            submit(){
+                this.$validator.validateAll().then(result => {
+                    if (result) {
+                        this.createJobProfile();
+                    } else {
+                        this.showErrors = true;
+                    }
+                });
             },
-            cancel(){
-            },
+            createJobProfile(){
+                this.$http.post('jobProfiles', {
+                    title: this.title,
+                    description: this.description,
+                    license: this.license,
+                    vehicle_type: this.vehicle_type,
+                    code_95: this.code_95,
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    this.$router.push({name: 'Login'});
+                }).catch(function (error) {
+                    this.error = error;
+                });
+            }
         }
     }
 </script>

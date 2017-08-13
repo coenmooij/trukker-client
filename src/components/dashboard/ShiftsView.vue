@@ -4,7 +4,7 @@
         <div class="pull-right app-top-buttons">
             <router-link :to="{name: 'ShiftCreate', params:{jobProfileId: jobProfileId}}" tag="button"
                          class="btn btn-primary pull-right"><span
-                    class="glyphicon glyphicon-plus "></span> Add Shift
+                    class="glyphicon glyphicon-plus "></span> Shift aanmaken
             </router-link>
         </div>
         <div class="clearfix"></div>
@@ -15,11 +15,11 @@
                 :key="shift.id">
         </app-shift>
         <div v-if="!hasShifts" class="app-info-box alert alert-warning text-center">
-            <p>You currently don't have any shifts for this job profile</p>
+            <p>Je hebt nog geen shifts voor dit dienstprofiel</p>
         </div>
         <div v-if="hasShifts" class="text-center app-bordered">
             <router-link :to="{name: 'ShiftCreate'}" tag="button" class="btn btn-primary"><span
-                    class="glyphicon glyphicon-plus "></span> Add Shift
+                    class="glyphicon glyphicon-plus "></span> Shift aanmaken
             </router-link>
         </div>
     </div>

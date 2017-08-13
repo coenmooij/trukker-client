@@ -53,11 +53,8 @@
             logout(){
                 this.$http.get('authentication/logout')
                     .then(response => {
-                        response.json()
+                        return response.json();
                     }).then(data => {
-                    this.clearToken();
-                    this.$router.push('/');
-                }).catch(error => {
                     this.clearToken();
                     this.$router.push('/');
                 });

@@ -1,24 +1,26 @@
 <template>
     <div v-if="!hasChildren">
         <router-link :to="{name: 'JobProfiles'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-            Back to Job Profiles
+            Terug naar Dienstprofielen
         </router-link>
         <div class="clearfix"></div>
-        <h1 class="pull-left">Job Profile</h1>
+        <h1 class="pull-left">Dienstprofiel</h1>
         <div class="clearfix"></div>
         <div class="divider"></div>
         <div class="panel panel-default">
             <div class="panel-body">
-                <p v-for="(parameter, key) in jobProfile">
-                    <strong>{{key | capitalize }}:</strong> {{ parameter }}
-                </p>
+                <p><strong>Titel: </strong> {{ jobProfile.title }}</p>
+                <p><strong>Beschrijving: </strong> {{ jobProfile.description }}</p>
+                <p><strong>Type voertuig: </strong> {{ jobProfile.vehicle_type }}</p>
+                <p><strong>Rijbewijs: </strong> {{ jobProfile.license }}</p>
+                <p><strong>Code 95: </strong> {{ jobProfile.code_95 ? 'Ja' : 'Nee' }}</p>
             </div>
         </div>
         <component is="appShiftsView"></component>
         <br>
         <div class="text-center">
             <router-link :to="{name: 'JobProfiles'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-                Back to Job Profiles
+                Terug naar Dienstprofielen
             </router-link>
         </div>
     </div>
@@ -32,11 +34,11 @@
         data() {
             return {
                 jobProfile: {
-                    title: 'Truck Driver',
-                    description: 'I want a good truck driver',
-                    compensation: '$100/hour',
-                    clothing: 'Extra warm',
-                    location: 'Amsterdam',
+                    title: 'Ervaren chauffeur',
+                    description: 'minimaal 5 jaar ervaring in Europa met zware vracht',
+                    license: 'Groot Rijbewijs C',
+                    code_95: true,
+                    vehicle_type: 'Grote bus',
                 },
             }
         },
@@ -48,6 +50,14 @@
         components: {
             appShiftsView: ShiftsView,
         },
+        beforeCreate(){
+            this.$http.get('jobProfiles/' + this.$route.params.jobProfileId)
+                .then(response => {
+                    response.json()
+                }).then(data => {
+                this.jobProfile = data.jobProfile;
+            });
+        }
     }
 </script>
 

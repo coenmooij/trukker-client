@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-            Back to Job Profile details
+            Terug naar Dienstprofiel
         </router-link>
         <div class="clearfix"></div>
         <h1 class="pull-left">Shift</h1>
@@ -17,7 +17,7 @@
         </div>
         <div class="text-center">
             <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-                Back to Job Profile details
+                Terug naar Dienstprofiel
             </router-link>
         </div>
     </div>

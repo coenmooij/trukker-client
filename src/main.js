@@ -14,6 +14,15 @@ Validator.addLocale(nl);
 Vue.use(VeeValidate, {locale: 'nl'});
 
 Vue.http.options.root = "http://api.trukker.dev";
+Vue.http.interceptors.push((request, next) => {
+    request.headers.set('token', store.getters.getToken);
+    next(function(response){
+        if(response.status === 401){
+            store.dispatch('clearToken');
+            router.push('/');
+        };
+    });
+});
 
 router.beforeEach((to, from, next) => {
     store.dispatch('loadToken');

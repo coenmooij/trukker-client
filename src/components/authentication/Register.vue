@@ -100,7 +100,7 @@
                     password: this.password,
                     company: this.company,
                 }).then(response => {
-                    response.json()
+                    return response.json();
                 }).then(data => {
                     this.$router.push({name: 'Login'});
                 }).catch(function (error) {

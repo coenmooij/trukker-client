@@ -1,10 +1,10 @@
 <template>
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
         <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-            Back to Job Profile details
+            Terug naar Dienstprofiel
         </router-link>
         <div class="clearfix"></div>
-        <h1 class="pull-left">Create a Shift</h1>
+        <h1 class="pull-left">Shift aanmaken</h1>
         <div class="clearfix"></div>
         <div class="divider"></div>
         <div class="panel panel-default">
@@ -38,7 +38,7 @@
                     <br>
                     <div class="text-center">
                         <button type="submit" @click.prevent="submitForm" class="btn btn-primary"><span
-                                class="glyphicon glyphicon-plus"></span> Create Shift
+                                class="glyphicon glyphicon-plus"></span> Shift aanmaken
                         </button>
                     </div>
                 </form>
@@ -46,7 +46,7 @@
         </div>
         <div class="text-center">
             <router-link :to="{name: 'JobProfileDetails'}"><span class="glyphicon glyphicon-share-alt flip-180"></span>
-                Back to Job Profile details
+                Terug naar Dienstprofiel
             </router-link>
         </div>
     </div>

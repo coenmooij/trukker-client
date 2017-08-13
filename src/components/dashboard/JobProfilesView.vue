@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1 class="pull-left">Job Profiles</h1>
+        <h1 class="pull-left">Dienstprofielen</h1>
         <div class="pull-right app-top-buttons">
             <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-primary pull-right"><span
-                    class="glyphicon glyphicon-plus "></span> Add Job Profile
+                    class="glyphicon glyphicon-plus "></span> Dienstprofiel aanmaken
             </router-link>
         </div>
         <div class="clearfix"></div>
@@ -14,11 +14,11 @@
                 :key="jobProfile.id">
         </app-job-profile>
         <div v-if="!hasJobProfiles" class="app-info-box alert alert-warning text-center">
-            <p>You currently don't have any job profiles in your account</p>
+            <p>Je hebt nog geen dienstprofielen aangemaakt</p>
         </div>
         <div v-if="hasJobProfiles" class="text-center app-bordered">
             <router-link :to="{name: 'JobProfileCreate'}" tag="button" class="btn btn-primary"><span
-                    class="glyphicon glyphicon-plus "></span> Add Job Profile
+                    class="glyphicon glyphicon-plus "></span> Dienstprofiel aanmaken
             </router-link>
         </div>
     </div>
@@ -30,38 +30,17 @@
     export default {
         data(){
             return {
-                jobProfiles: [
-                    {
-                        id: 1,
-                        title: 'Truck Driver',
-                        description: 'I want a good truck driver',
-                        compensation: '$100/hour',
-                        clothing: 'Extra warm',
-                        location: 'Amsterdam',
-                    }, {
-                        id: 2,
-                        title: 'Taxi Driver',
-                        description: 'I want a good taxi driver',
-                        compensation: '$59/hour',
-                        clothing: 'suit',
-                        location: 'Utrecht',
-                    }, {
-                        id: 3,
-                        title: 'Racetrack Coureur',
-                        description: 'I want to have Max Verstappen type driver',
-                        compensation: '$3000/hour',
-                        clothing: 'Secure suit',
-                        location: 'Zandvoort',
-                    }, {
-                        id: 4,
-                        title: 'Soccer Mom',
-                        description: 'A mom with 4 kids in a minivan',
-                        compensation: '$15/hour',
-                        clothing: 'Mom clothing',
-                        location: 'Gouda',
-                    },
-                ],
+                jobProfiles: [],
             };
+        },
+        methods: {
+            getJobProfiles(){
+                this.$http.get('jobProfiles').then(response => {
+                    return response.json();
+                }).then(data => {
+                    this.jobProfiles = data.jobProfiles;
+                });
+            }
         },
         components: {
             appJobProfile: JobProfile,
@@ -70,6 +49,9 @@
             hasJobProfiles(){
                 return this.jobProfiles.length > 0;
             }
+        },
+        created(){
+            this.getJobProfiles();
         },
     }
 </script>
