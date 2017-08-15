@@ -84,13 +84,13 @@
             submit(){
                 this.$validator.validateAll().then(result => {
                     if (result) {
-                        this.createShift();
+                        this.createJobProfile();
                     } else {
                         this.showErrors = true;
                     }
                 });
             },
-            createShift(){
+            createJobProfile(){
                 this.$http.post('jobProfiles', {
                     title: this.title,
                     description: this.description,
