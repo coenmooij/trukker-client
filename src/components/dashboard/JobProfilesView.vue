@@ -13,7 +13,7 @@
                 :jobProfile="jobProfile"
                 :key="jobProfile.id">
         </app-job-profile>
-        <div v-if="!hasJobProfiles" class="app-info-box alert alert-warning text-center">
+        <div v-if="!hasJobProfiles && loaded" class="app-info-box alert alert-warning text-center">
             <p>Je hebt nog geen dienstprofielen aangemaakt</p>
         </div>
         <div v-if="hasJobProfiles" class="text-center app-bordered">
@@ -31,6 +31,7 @@
         data(){
             return {
                 jobProfiles: [],
+                loaded: false,
             };
         },
         methods: {
@@ -39,6 +40,7 @@
                     return response.json();
                 }).then(data => {
                     this.jobProfiles = data.jobProfiles;
+                    this.loaded = true;
                 });
             }
         },

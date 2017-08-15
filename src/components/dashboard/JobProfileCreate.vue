@@ -50,7 +50,6 @@
                         <label for="code-95">
                             <input type="checkbox" id="code-95" v-model="code_95"/>In bezit van Code 95
                         </label>
-
                     </div>
                     <br>
                     <button type="submit" style="width:100%;" @click.prevent="submit"
@@ -85,13 +84,13 @@
             submit(){
                 this.$validator.validateAll().then(result => {
                     if (result) {
-                        this.createJobProfile();
+                        this.createShift();
                     } else {
                         this.showErrors = true;
                     }
                 });
             },
-            createJobProfile(){
+            createShift(){
                 this.$http.post('jobProfiles', {
                     title: this.title,
                     description: this.description,

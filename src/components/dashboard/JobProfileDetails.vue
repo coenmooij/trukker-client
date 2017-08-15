@@ -7,7 +7,7 @@
         <h1 class="pull-left">Dienstprofiel</h1>
         <div class="clearfix"></div>
         <div class="divider"></div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" v-if="loaded">
             <div class="panel-body">
                 <p><strong>Titel: </strong> {{ jobProfile.title }}</p>
                 <p><strong>Beschrijving: </strong> {{ jobProfile.description }}</p>
@@ -33,13 +33,8 @@
     export default {
         data() {
             return {
-                jobProfile: {
-                    title: 'Ervaren chauffeur',
-                    description: 'minimaal 5 jaar ervaring in Europa met zware vracht',
-                    license: 'Groot Rijbewijs C',
-                    code_95: true,
-                    vehicle_type: 'Grote bus',
-                },
+                jobProfile: [],
+                loaded: false,
             }
         },
         computed: {
@@ -50,12 +45,13 @@
         components: {
             appShiftsView: ShiftsView,
         },
-        beforeCreate(){
+        created(){
             this.$http.get('jobProfiles/' + this.$route.params.jobProfileId)
                 .then(response => {
-                    response.json()
+                    return response.json();
                 }).then(data => {
                 this.jobProfile = data.jobProfile;
+                this.loaded = true;
             });
         }
     }

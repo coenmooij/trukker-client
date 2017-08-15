@@ -14,7 +14,7 @@
                 :shift="shift"
                 :key="shift.id">
         </app-shift>
-        <div v-if="!hasShifts" class="app-info-box alert alert-warning text-center">
+        <div v-if="!hasShifts && loaded" class="app-info-box alert alert-warning text-center">
             <p>Je hebt nog geen shifts voor dit dienstprofiel</p>
         </div>
         <div v-if="hasShifts" class="text-center app-bordered">
@@ -31,17 +31,8 @@
     export default {
         data(){
             return {
-                shifts: [
-                    {
-                        id: 1,
-                        title: 'Shift',
-                        description: 'vandaag iemand nodig voor de catering',
-                        compensation: '10$/h',
-                        time: '2 dagen',
-                        date: '3 juli t/m 15 juli',
-                        location: 'Amsterdam centrum',
-                    },
-                ],
+                loaded: false,
+                shifts: [],
             }
         },
         computed: {
@@ -54,6 +45,15 @@
         },
         components: {
             appShift: Shift,
+        },
+        created(){
+            this.$http.get('jobProfiles/' + this.$route.params.jobProfileId + '/shifts')
+                .then(response => {
+                    return response.json();
+                }).then(data => {
+                this.shifts = data.shifts;
+                this.loaded = true;
+            });
         },
     }
 </script>

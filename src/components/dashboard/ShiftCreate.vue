@@ -11,33 +11,80 @@
             <div class="panel-body">
                 <form>
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input class="form-control" id="title" type="text" v-model="title" placeholder="Truck Driver">
+                        <label for="title">Titel</label>
+                        <input class="form-control" id="title" type="text" name="Titel" v-model="title"
+                               v-validate="'required'" placeholder="Truck Driver">
+                        <small v-if="showErrors && errors.has('Titel')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Titel') }}
+                        </small>
                     </div>
+
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">Beschrijving</label>
                         <textarea class="form-control" id="description" v-model="description"
                                   placeholder="Describe your Shift"></textarea>
                     </div>
+
                     <div class="form-group">
-                        <label for="compensation">Compensation</label>
-                        <input class="form-control" id="compensation" v-model="compensation" placeholder="$10/hour"/>
+                        <label for="compensation">Uurtarief</label>
+                        <input class="form-control" id="compensation" name="Uurtarief" type="number"
+                               v-validate="'numeric'" v-model="compensation" number/>
+                        <small v-if="showErrors && errors.has('Uurtarief')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Uurtarief') }}
+                        </small>
                     </div>
+
                     <div class="form-group">
-                        <label for="time">Time</label>
-                        <input class="form-control" id="time" v-model="time" placeholder="2 days"/>
+                        <label for="start-date">Startdatum</label>
+                        <input class="form-control" id="start-date" name="Startdatum" placeholder="01/01/2017"
+                               v-validate="'required'" v-model="startDate"/>
+                        <small v-if="showErrors && errors.has('Startdatum')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Startdatum') }}
+                        </small>
                     </div>
+
                     <div class="form-group">
-                        <label for="date">Date</label>
-                        <input class="form-control" id="date" v-model="date" placeholder="July 2 - July 10"/>
+                        <label for="end-date">Einddatum</label>
+                        <input class="form-control" id="end-date" name="Einddatum" placeholder="01/01/2017"
+                               v-validate="'required'" v-model="endDate"/>
+                        <small v-if="showErrors && errors.has('Einddatum')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Einddatum') }}
+                        </small>
                     </div>
+
                     <div class="form-group">
-                        <label for="location">Location</label>
-                        <input class="form-control" id="location" v-model="location" placeholder="Amsterdam"/>
+                        <label for="start-location">Startlocatie</label>
+                        <input class="form-control" id="start-location" type="text" name="Startlocatie"
+                               v-model="startLocation" v-validate="'required'" placeholder="bijv.: Amsterdam">
+                        <small v-if="showErrors && errors.has('Startlocatie')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Startlocatie') }}
+                        </small>
                     </div>
+
+                    <div class="form-group">
+                        <label for="end-location">Eindlocatie</label>
+                        <input class="form-control" id="end-location" type="text" name="Eindlocatie"
+                               v-model="startLocation" v-validate="'required'" placeholder="bijv.: Parijs">
+                        <small v-if="showErrors && errors.has('Eindlocatie')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Eindlocatie') }}
+                        </small>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <label for="code-95">
+                            <input type="checkbox" id="code-95" v-model="code_95"/>Rit is retour
+                        </label>
+                    </div>
+
                     <br>
                     <div class="text-center">
-                        <button type="submit" @click.prevent="submitForm" class="btn btn-primary"><span
+                        <button type="submit" @click.prevent="submit" class="btn btn-primary"><span
                                 class="glyphicon glyphicon-plus"></span> Shift aanmaken
                         </button>
                     </div>
@@ -58,10 +105,16 @@
             return {
                 title: '',
                 description: '',
-                compensation: '',
-                time: '',
-                date: '',
-                location: '',
+                compensation: 20,
+                startDate: '',
+                endDate: '',
+                startLocation: '',
+                endLocation: '',
+                isRetour: false,
+                outboundCargo: '',
+                inboundCargo: '',
+                showErrors: false,
+                error: false,
             }
         },
         computed: {
@@ -70,9 +123,26 @@
             }
         },
         methods: {
-            submitForm(){
-                console.log('form submitted');
-                this.$router.push({name: 'JobProfileDetails', parameters: {jobProfileId: this.jobProfileId}});
+            submit(){
+                this.$validator.validateAll().then(result => {
+                    if (result) {
+                        this.createShift();
+                    } else {
+                        this.showErrors = true;
+                    }
+                });
+            },
+            createShift(){
+                this.$http.post('jobProfiles', {
+                    title: this.title,
+                    // TODO : ADD Stuff
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    this.$router.push({name: 'JobProfileDetails', parameters: {jobProfileId: this.jobProfileId}});
+                }).catch(function (error) {
+                    this.error = error;
+                });
             }
         }
     }
