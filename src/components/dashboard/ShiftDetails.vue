@@ -9,10 +9,16 @@
         <div class="divider"></div>
         <div class="panel panel-default">
             <div class="panel-body">
-                <p v-for="(parameter, key) in shift"><strong>{{key | capitalize
-                    }}:</strong>
-                    {{ parameter }}
-                </p>
+                <p><strong>Titel:</strong> {{ shift.title }}</p>
+                <p><strong>Beschrijving:</strong> {{ shift.description}}</p>
+                <p><strong>Startlocatie:</strong> {{ shift.start_location}}</p>
+                <p><strong>Eindlocatie:</strong> {{ shift.end_location}}</p>
+                <p><strong>Startdatum:</strong> {{ shift.start_date}}</p>
+                <p><strong>Einddatum:</strong> {{ shift.end_date}}</p>
+                <p><strong>Uurtarief:</strong> €{{ shift.compensation }},-</p>
+                <p v-if="!shift.is_retour"><strong>Vracht:</strong> {{ shift.outbound_cargo }}</p>
+                <p v-if="shift.is_retour"><strong>Heenvracht:</strong> {{ shift.outbound_cargo }}</p>
+                <p v-if="shift.is_retour"><strong>Terugvracht:</strong> {{ shift.inbound_cargo }}</p>
             </div>
         </div>
         <div class="text-center">
@@ -27,16 +33,17 @@
     export default {
         data() {
             return {
-                shift: {
-                    title: 'Shift',
-                    description: 'vandaag iemand nodig voor de catering',
-                    compensation: '10$/h',
-                    time: '2 dagen',
-                    date: '3 juli t/m 15 juli',
-                    location: 'Amsterdam centrum',
-                },
+                shift: {},
             }
         },
+        created(){
+            this.$http.get('shifts/' + this.$route.params.shiftId)
+                .then(response => {
+                    return response.json();
+                }).then(data => {
+                this.shift = data.shift;
+            });
+        }
     }
 </script>
 

@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label for="title">Titel</label>
                         <input class="form-control" id="title" type="text" name="Titel" v-model="title"
-                               v-validate="'required'" placeholder="Truck Driver">
+                               v-validate="'required'" placeholder="Expeditie Duitsland">
                         <small v-if="showErrors && errors.has('Titel')" class="form-text text-danger"><span
                                 class="glyphicon glyphicon-remove help is-danger"></span>
                             {{ errors.first('Titel') }}
@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="description">Beschrijving</label>
                         <textarea class="form-control" id="description" v-model="description"
-                                  placeholder="Describe your Shift"></textarea>
+                                  placeholder="Beschrijf je shift"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -69,17 +69,37 @@
                     <div class="form-group">
                         <label for="end-location">Eindlocatie</label>
                         <input class="form-control" id="end-location" type="text" name="Eindlocatie"
-                               v-model="startLocation" v-validate="'required'" placeholder="bijv.: Parijs">
+                               v-model="endLocation" v-validate="'required'" placeholder="bijv.: Parijs">
                         <small v-if="showErrors && errors.has('Eindlocatie')" class="form-text text-danger"><span
                                 class="glyphicon glyphicon-remove help is-danger"></span>
                             {{ errors.first('Eindlocatie') }}
                         </small>
                     </div>
 
+                    <div class="form-group">
+                        <label for="outbound-cargo">Heenvracht</label>
+                        <input class="form-control" id="outbound-cargo" type="text" name="Heenvracht"
+                               v-model="outboundCargo" v-validate="'required'" placeholder="bijv.: Voedingswaren">
+                        <small v-if="showErrors && errors.has('Heenvracht')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Heenvracht') }}
+                        </small>
+                    </div>
+
                     <div class="form-group checkbox">
-                        <label for="code-95">
-                            <input type="checkbox" id="code-95" v-model="code_95"/>Rit is retour
+                        <label for="is-retour">
+                            <input type="checkbox" id="is-retour" v-model="isRetour"/>Rit is retour
                         </label>
+                    </div>
+
+                    <div class="form-group" v-if="isRetour">
+                        <label for="inbound-cargo">Terugvracht</label>
+                        <input class="form-control" id="inbound-cargo" type="text" name="Terugvracht"
+                               v-model="inboundCargo" v-validate="'required'" placeholder="bijv.: Karton">
+                        <small v-if="showErrors && errors.has('Terugvracht')" class="form-text text-danger"><span
+                                class="glyphicon glyphicon-remove help is-danger"></span>
+                            {{ errors.first('Terugvracht') }}
+                        </small>
                     </div>
 
                     <br>
@@ -133,9 +153,17 @@
                 });
             },
             createShift(){
-                this.$http.post('jobProfiles', {
+                this.$http.post('jobProfiles/' + this.jobProfileId + '/shifts', {
                     title: this.title,
-                    // TODO : ADD Stuff
+                    description: this.description,
+                    compensation: this.compensation,
+                    start_date: this.startDate,
+                    end_date: this.endDate,
+                    start_location: this.startLocation,
+                    end_location: this.endLocation,
+                    is_retour: this.isRetour,
+                    outbound_cargo: this.outboundCargo,
+                    inbound_cargo: this.inboundCargo,
                 }).then(response => {
                     return response.json();
                 }).then(data => {

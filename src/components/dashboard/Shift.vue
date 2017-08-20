@@ -6,9 +6,14 @@
                 <p>{{ shift.description}}</p>
             </div>
             <div class="col-xs-12 col-sm-4 app-meta">
-                <p>Compensation: {{ shift.compensation }}</p>
-                <p>Location: {{ shift.location }}</p>
-                <p>{{ shift.time }} - {{ shift.date }}</p>
+                <p><strong>{{ shift.start_location }}</strong> naar <strong>{{ shift.end_location }}</strong></p>
+                <p><strong>€{{ shift.compensation }},-</strong> per uur</p>
+                <p><strong>{{ shift.start_date }}</strong> tot <strong>{{ shift.end_date }}</strong></p>
+                <p v-if="!shift.is_retour">Vracht: <strong>{{ shift.outbound_cargo }}</strong></p>
+                <p v-if="shift.is_retour">
+                    Heenvracht: <strong>{{ shift.outbound_cargo }}</strong>,<br>
+                    Terugvracht: <strong>{{ shift.inbound_cargo }}</strong>
+                </p>
             </div>
         </div>
     </div>
@@ -22,9 +27,13 @@
                 title: String,
                 description: String,
                 compensation: String,
-                Time: String,
-                Date: String,
-                Location: String,
+                start_date: String,
+                end_date: String,
+                start_location: String,
+                end_location: String,
+                is_retour: Boolean,
+                outbound_cargo: String,
+                inbound_cargo: String,
             },
         },
         methods: {
